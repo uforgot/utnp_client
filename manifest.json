@@ -1,0 +1,13 @@
+{
+  "version": "0.1",
+  "start_url" : "/",
+  "scope" : ".",
+  "display" : "standalone",
+  "orientation" : "portrait-primary",
+  "background_color" : "#fff",
+  "theme_color" : "#fff",
+  "description" : "UTNP CLIENT",
+  "dir" : "ltr",
+  "lang" : "ko-KR"
+
+}
