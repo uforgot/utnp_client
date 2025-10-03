@@ -8,33 +8,56 @@ export default class InteractiveEqualizer {
   private renderer: THREE.WebGLRenderer | undefined;
   private analyser: THREE.AudioAnalyser | undefined;
   private uniforms: { [key: string]: { value: any } } | undefined;
+  private listener: THREE.AudioListener | undefined;
+  private audio: THREE.Audio | undefined;
+  private mediaAudio: HTMLAudioElement | undefined;
+  private isInit = false;
 
   constructor(private el: HTMLDivElement) {}
 
+  public setAudio(): void {
+    if (this.isInit) return;
+
+    this.listener = new THREE.AudioListener();
+    this.audio = new THREE.Audio(this.listener);
+
+    const file = 'test.mp3';
+    this.mediaAudio = new Audio(file);
+    this.mediaAudio
+      .play()
+      .then(() => {
+        if (!this.audio || !this.mediaAudio) return;
+        this.audio.setMediaElementSource(this.mediaAudio);
+        this.init();
+      })
+      .catch((e) => {
+        this.destroy();
+      });
+    /**
+    if (/(iPad|iPhone|iPod)/g.test(navigator.userAgent)) {
+      const loader = new THREE.AudioLoader();
+      loader.load(file, (buffer) => {
+        if (!this.audio) return;
+        this.audio.setBuffer(buffer);
+        this.audio.play();
+        this.init();
+      });
+    } else {
+
+    }**/
+  }
+
   public init(): void {
+    if (this.isInit) return;
+    this.isInit = true;
+    if (!this.audio) return;
+
     const fftSize = 32;
     const container = this.el;
     this.scene = new THREE.Scene();
     this.camera = new THREE.Camera();
 
-    const listener = new THREE.AudioListener();
-    const audio = new THREE.Audio(listener);
-
-    const file = 'test.mp3';
-
-    if (/(iPad|iPhone|iPod)/g.test(navigator.userAgent)) {
-      const loader = new THREE.AudioLoader();
-      loader.load(file, function (buffer) {
-        audio.setBuffer(buffer);
-        audio.play();
-      });
-    } else {
-      const mediaElement = new Audio(file);
-      mediaElement.play().then(() => {});
-
-      audio.setMediaElementSource(mediaElement);
-    }
-    this.analyser = new THREE.AudioAnalyser(audio, fftSize);
+    this.analyser = new THREE.AudioAnalyser(this.audio, fftSize);
     this.uniforms = {
       tAudioData: {
         value: new THREE.DataTexture(
@@ -78,6 +101,14 @@ export default class InteractiveEqualizer {
   };
 
   destroy() {
+    console.log('---> InteractiveEqualizer destroy');
+    this.audio?.stop();
+    this.audio = undefined;
+    this.listener = undefined;
+
+    this.mediaAudio?.pause();
+    this.mediaAudio = undefined;
+
     if (this.renderer) {
       this.renderer.dispose();
       this.renderer.forceContextLoss();
@@ -99,6 +130,8 @@ export default class InteractiveEqualizer {
     this.analyser = undefined;
     this.uniforms = undefined;
     this.el.innerHTML = '';
+
+    this.isInit = false;
     console.log('InteractiveEqualizer destroyed');
   }
 }

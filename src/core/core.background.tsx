@@ -3,7 +3,6 @@ import InteractiveStage from '@/interactive/interactive.stage.ts';
 import InteractiveEqualizer from '@/interactive/interactive.equalizer.ts';
 
 interface IProps {}
-
 export default class CoreBackground extends React.Component<IProps> {
   private refStageEl = React.createRef<HTMLDivElement>();
   private refEqualizerEl = React.createRef<HTMLDivElement>();
@@ -43,15 +42,13 @@ export default class CoreBackground extends React.Component<IProps> {
           ref={this.refStageEl}
         />
         <div
-          className={'absolute w-[400px] h-[300px] top-0 left-0 z-10'}
+          className={'absolute w-[200px] h-[150px] top-0 left-0 z-10'}
           ref={this.refEqualizerEl}
         />
         <button
           className={'absolute left-1/2 bg-[red] cursor-pointer z-100 p-10'}
           onClick={() => {
-            console.log('--> play');
-            console.log(this.equalizer);
-            this.equalizer?.init();
+            this.equalizer?.setAudio();
           }}
         >
           play
