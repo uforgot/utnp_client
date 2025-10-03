@@ -116,7 +116,7 @@ export default class InteractiveStage {
     // this.scene.add(debugMesh);
 
     this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    this.renderer.setPixelRatio(window.devicePixelRatio);
+    this.renderer.setPixelRatio(1.0);
     this.renderer.setSize(
       this.el.getBoundingClientRect().width,
       this.el.getBoundingClientRect().height
@@ -136,8 +136,8 @@ export default class InteractiveStage {
     this.analyser.getByteFrequencyData(this.audioData);
     this.uniforms.iTime.value = this.time += 0.01;
     this.uniforms.iResolution.value.set(
-      this.el.getBoundingClientRect().width * 2,
-      this.el.getBoundingClientRect().height * 2,
+      this.el.getBoundingClientRect().width * 1,
+      this.el.getBoundingClientRect().height * 1,
       1
     );
     this.uniforms.iChannel0.value.needsUpdate = true;
