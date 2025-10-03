@@ -36,24 +36,59 @@ export default class CoreBackground extends React.Component<IProps> {
 
   render() {
     return (
-      <>
+      <div>
         <div
+          style={{ background: 'rgb(48,11,11)' }}
+          className={'absolute top-0 left-0 w-full h-full hue-rotate-animation'}
+        />
+        <div
+          className={'absolute left-0 right-0 w-full h-full'}
+          style={{
+            filter: 'blur(50px)',
+          }}
+        >
+          <div
+            style={{ background: 'rgb(97,56,56)' }}
+            className={
+              'absolute left-1/2 top-1/2 w-[80%] aspect-square -translate-x-1/2 -translate-y-1/2 rounded-full hue-rotate-animation'
+            }
+          />
+        </div>
+        <div
+          className={'absolute left-0 right-0 w-full h-full h-full'}
+          style={{
+            filter: 'blur(80px)',
+          }}
+        >
+          <div
+            style={{ background: 'rgb(159,109,109)' }}
+            className={
+              'absolute left-1/2 top-1/2 w-[40%] aspect-square -translate-x-1/2 -translate-y-1/2 rounded-full hue-rotate-animation'
+            }
+          />
+        </div>
+        <div
+          style={{
+            filter: 'blur(10px) brightness(0.9) contrast(1.3)',
+          }}
           className={'absolute w-full h-full top-0 left-0 z-10'}
           ref={this.refStageEl}
         />
-        <div
-          className={'absolute w-[200px] h-[150px] top-0 left-0 z-10'}
-          ref={this.refEqualizerEl}
-        />
+        {/*<div*/}
+        {/*  className={'absolute w-[200px] h-[150px] top-0 left-0 z-10'}*/}
+        {/*  ref={this.refEqualizerEl}*/}
+        {/*/>*/}
         <button
-          className={'absolute left-1/2 bg-[red] cursor-pointer z-100 p-10'}
+          className={
+            'absolute right-0 bottom-0 bg-[red] cursor-pointer z-100 p-3'
+          }
           onClick={() => {
-            this.equalizer?.setAudio();
+            this.stage?.init();
           }}
         >
           play
         </button>
-      </>
+      </div>
     );
   }
 }

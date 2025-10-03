@@ -33,5 +33,5 @@
       "three/tsl": ["node_modules/three/build/three.tsl.js"]
     }
   },
-  "include": ["src"]
+  "include": ["src", "declarations.d.ts", "vite-env.d.ts"]
 }
