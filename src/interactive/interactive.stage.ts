@@ -26,26 +26,48 @@ export default class InteractiveStage {
 
   private setMic(): void {
     this.audioCtx = new AudioContext();
+
     //@ts-ignore
-    navigator.getUserMedia(
-      { audio: true, video: false },
+    //prettier-ignore
+    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+
+    //@ts-ignore
+    if (navigator.getUserMedia) {
       //@ts-ignore
-      (stream) => {
-        if (!this.audioCtx) return;
-        this.analyser = this.audioCtx.createAnalyser();
-        const source = this.audioCtx.createMediaStreamSource(stream);
+      navigator.getUserMedia(
+        { audio: true, video: false },
+        //@ts-ignore
+        (stream) => {
+          if (!this.audioCtx) return;
+          this.analyser = this.audioCtx.createAnalyser();
+          const source = this.audioCtx.createMediaStreamSource(stream);
 
-        source.connect(this.analyser);
-        this.analyser.fftSize = 128;
-        this.audioData = new Uint8Array(this.analyser.frequencyBinCount);
+          source.connect(this.analyser);
+          this.analyser.fftSize = 128;
+          this.audioData = new Uint8Array(this.analyser.frequencyBinCount);
 
-        this.createScene();
-        // this.animate();
-      },
-      () => {
-        console.warn('Analyser error');
-      }
-    );
+          this.createScene();
+        },
+        () => {
+          console.warn('Analyser error');
+        }
+      );
+    } else {
+      alert('mic not supported');
+      navigator.mediaDevices
+        .getUserMedia({ audio: true, video: false })
+        .then((stream) => {
+          if (!this.audioCtx) return;
+          this.analyser = this.audioCtx.createAnalyser();
+          const source = this.audioCtx.createMediaStreamSource(stream);
+
+          source.connect(this.analyser);
+          this.analyser.fftSize = 128;
+          this.audioData = new Uint8Array(this.analyser.frequencyBinCount);
+
+          this.createScene();
+        });
+    }
   }
 
   private createScene() {
