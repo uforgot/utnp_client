@@ -24,11 +24,12 @@ export default tseslint.config([
       // 빈 interface 선언
       '@typescript-eslint/no-unused-vars': 'warn',
       // 사용되지 않는 변수
-      '@typescript-eslint/no-explicit-any': 'error',
+      '@typescript-eslint/no-explicit-any': 'off',
       // any 타입 정의
       '@typescript-eslint/ban-ts-ignore': 'off',
       '@typescript-eslint/ban-ts-comment': 'off',
       // ts-ignore 허용
+      '@typescript-eslint/no-empty-object-type': 'warn',
     },
   },
 ]);

@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import loadVersion from 'vite-plugin-package-version';
 import tsconfigPaths from 'vite-tsconfig-paths';
+import glsl from 'vite-plugin-glsl';
 import tailwindcss from '@tailwindcss/vite';
 import postcssNested from 'postcss-nested';
 
@@ -14,7 +15,7 @@ export default defineConfig({
       plugins: [postcssNested],
     },
   },
-  plugins: [loadVersion(), tsconfigPaths(), tailwindcss(), react()],
+  plugins: [loadVersion(), tsconfigPaths(), tailwindcss(), glsl(), react()],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
