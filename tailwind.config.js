@@ -5,7 +5,7 @@ import TailwindMq, { Mq } from './src/util/mq.js';
 Mq.setBreakPoint([ConstantStyle.MIN_WIDTH_MOBILE]);
 
 Mq.constantStyle = ConstantStyle;
-Mq.setMobileRatio(1 / 2);
+Mq.setMobileRatio(1);
 
 export default {
   content: ['./src/**/*.{js,ts,jsx,tsx,mdx,css}'],

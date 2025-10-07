@@ -1,27 +1,58 @@
 h1 {
   text-align: center;
   font-family: 'Pretendard Variable', sans-serif;
-  font-size: 68px;
+  /*font-size: 68px;*/
+  @apply mq-[font-size|68px];
   font-style: normal;
   font-weight: 700;
   line-height: 120%; /* 81.6px */
-  letter-spacing: -1.36px;
+  letter-spacing: -0.015em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h2 {
   text-align: center;
   font-family: 'Pretendard Variable', sans-serif;
-  font-size: 42px;
+  @apply mq-[font-size|42px];
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 p {
   text-align: center;
   font-family: 'Pretendard Variable', sans-serif;
-  font-size: 28px;
+  @apply mq-[font-size|28px];
   font-style: normal;
   font-weight: 600;
-  line-height: 130%; /* 36.4px */
+  line-height: 130%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button {
+  color: #000;
+  text-align: center;
+  font-family: 'Pretendard Variable', sans-serif;
+  @apply mq-[font-size|40px];
+  font-style: normal;
+  font-weight: 700;
+  line-height: 125%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.count {
+  color: #d8e243;
+  text-align: center;
+  font-family: 'Pretendard Variable', sans-serif;
+  @apply mq-[font-size|400px];
+  font-style: normal;
+  font-weight: 300;
+  line-height: 120%; /* 480px */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

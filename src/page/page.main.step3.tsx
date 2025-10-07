@@ -1,0 +1,61 @@
+import { useEffect, useState } from 'react';
+import useStoreStep from '@/store/store.step.ts';
+import { AnimatePresence, motion } from 'framer-motion';
+
+export default function PageMainStep3() {
+  const [count, setCount] = useState(5);
+  const { setStep } = useStoreStep();
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setCount((prev) => {
+        if (prev === 0) {
+          setStep(3);
+          return prev;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => {
+      window.clearInterval(timer);
+    };
+  }, [setStep, setCount]);
+
+  return (
+    <>
+      <div className={'mq-[margin-top|-424px]'}>
+        <h1
+          className={
+            'text-lime text-center whitespace-nowrap mq-[margin-top|56px]'
+          }
+        >
+          마이크 앞에 서서
+          <br />
+          자연스럽게 숨을 내쉬어주세요.
+        </h1>
+        <p
+          className={
+            'text-lime text-center whitespace-nowrap mq-[margin-top|24px]'
+          }
+        >
+          Stand in front of the mic and breathe out naturally.
+        </p>
+      </div>
+      <AnimatePresence mode={'wait'}>
+        <motion.div
+          initial={{ opacity: 0, scale: 1.1 }}
+          animate={{ opacity: 1, scale: 1.0 }}
+          exit={{ opacity: 0, scale: 0.9 }}
+          transition={{ duration: 0.3 }}
+          key={count}
+          className={
+            'absolute left-1/2 mq-[margin-top|250px] mq-[width|307px] -translate-1/2 count'
+          }
+        >
+          {count}
+        </motion.div>
+      </AnimatePresence>
+    </>
+  );
+}

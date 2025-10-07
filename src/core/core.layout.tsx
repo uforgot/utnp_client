@@ -10,7 +10,11 @@ export default function CoreLayout({
   return (
     <main className={'absolute left-0 top-0 w-full h-full'}>
       <CoreBackground />
-      <div className={'relative z-content'}>{children}</div>
+      <div className={'relative z-content w-full h-full'}>
+        <div className={'absolute left-1/2 top-1/2 -translate-1/2'}>
+          {children}
+        </div>
+      </div>
       <CoreFrame />
     </main>
   );
