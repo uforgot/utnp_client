@@ -34,11 +34,7 @@ class ConstantStyle {
       white: '#FFFFFF',
       gray: '#8E8E8E',
       red: '#FF0000',
-      content: {},
-
-      contentFocus: {},
-
-      card: {},
+      lime: '#D8E243',
     },
     screens: {
       sm: `${ConstantStyle.MIN_WIDTH_MOBILE + 1}px`,

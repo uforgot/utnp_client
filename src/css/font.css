@@ -1,0 +1,27 @@
+h1 {
+  text-align: center;
+  font-family: 'Pretendard Variable', sans-serif;
+  font-size: 68px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%; /* 81.6px */
+  letter-spacing: -1.36px;
+}
+
+h2 {
+  text-align: center;
+  font-family: 'Pretendard Variable', sans-serif;
+  font-size: 42px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+p {
+  text-align: center;
+  font-family: 'Pretendard Variable', sans-serif;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 130%; /* 36.4px */
+}

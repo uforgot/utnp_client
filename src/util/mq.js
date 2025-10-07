@@ -65,11 +65,11 @@ var Mq = class _Mq {
     obj[this.property] = this.getValue(this._valueArray[0], 0, true);
 
     // mobile 사이즈 하나만 있으므로 media 쿼리 생성 안함
-    // for (let i = 0; i < _Mq.breakPoint.length - 1; i++) {
-    //   obj[`@media (min-width : ${_Mq.breakPoint[i] + 1}px)`] = {
-    //     [this.property]: this._valueArray[i + 1],
-    //   };
-    // }
+    for (let i = 0; i < _Mq.breakPoint.length - 1; i++) {
+      obj[`@media (min-width : ${_Mq.breakPoint[i] + 1}px)`] = {
+        [this.property]: parseFloat(this._valueArray[i + 1]) / 2 + 'px',
+      };
+    }
     if (this.isDebug) console.log(obj);
     return obj;
   }
