@@ -1,22 +1,7 @@
 class ConstantStyle {
-  static MIN_WIDTH_MOBILE = 620;
-  static MIN_WIDTH_TABLET = 1280;
-  static MIN_WIDTH_DESKTOP = 1920;
+  static MIN_WIDTH_MOBILE = 1080;
 
-  static CONTENT_MOBILE_COLUMN_GAP = 10;
-  static CONTENT_TABLET_COLUMN_GAP = 24;
-  static CONTENT_DESKTOP_COLUMN_GAP = 24;
-
-  static CONTENT_MOBILE_PADDING = 14;
-  static CONTENT_TABLET_PADDING = 72;
-  static CONTENT_DESKTOP_PADDING = 72;
-
-  static MEDIA_BREAK_POINTS = [
-    ConstantStyle.MIN_WIDTH_MOBILE,
-    ConstantStyle.MIN_WIDTH_TABLET,
-    ConstantStyle.MIN_WIDTH_DESKTOP,
-    ConstantStyle.MIN_WIDTH_DESKTOP + 1,
-  ];
+  static MEDIA_BREAK_POINTS = [ConstantStyle.MIN_WIDTH_MOBILE];
 
   static getPixelToEm(spacing: number) {
     return spacing / 1000 + 'em';
@@ -57,8 +42,6 @@ class ConstantStyle {
     },
     screens: {
       sm: `${ConstantStyle.MIN_WIDTH_MOBILE + 1}px`,
-      lg: `${ConstantStyle.MIN_WIDTH_TABLET + 1}px`,
-      xl: `${ConstantStyle.MIN_WIDTH_DESKTOP + 1}px`,
     },
     extend: {
       keyframes: {
@@ -75,15 +58,10 @@ class ConstantStyle {
         normal: `${60 / 46}`,
       },
       zIndex: {
+        background: '10',
         content: '1000',
-        header: '2000',
-        explorer: '4000',
-        layer: '6000',
-        popup: '7000',
-        loading: '400000',
-        splash: '500000',
+        frame: '1500',
         din: '600000',
-        helper: '1000000',
       },
     },
   };
