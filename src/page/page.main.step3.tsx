@@ -1,26 +1,37 @@
 import { useEffect, useState } from 'react';
 import useStoreStep from '@/store/store.step.ts';
-import { AnimatePresence, motion } from 'framer-motion';
 
 export default function PageMainStep3() {
-  const [count, setCount] = useState(5);
+  const [timeLeft, setTimeLeft] = useState('');
   const { setStep } = useStoreStep();
 
   useEffect(() => {
-    const timer = window.setInterval(() => {
-      setCount((prev) => {
-        if (prev === 0) {
-          setStep(3);
-          return prev;
-        }
-        return prev - 1;
-      });
-    }, 1000);
+    let timerId = 0;
+    function formatTime(ms: number) {
+      const second = Math.floor((ms / 1000) % 60);
+      const millisecond = Math.floor((ms % 1000) / 10);
+      return `${second.toString().padStart(2, '0')}:${millisecond.toString().padStart(2, '0')}`;
+    }
 
+    function intervalTimer(endTime: Date, timeout: number) {
+      timerId = window.setInterval(() => {
+        const now = Date.now();
+        const end = endTime.getTime();
+        let timeLeft = end - now;
+
+        if (timeLeft <= 0) {
+          timeLeft = 0;
+          window.clearInterval(timerId);
+          setStep(3);
+        }
+        setTimeLeft(formatTime(timeLeft));
+      }, timeout);
+    }
+    intervalTimer(new Date(Date.now() + 10000), 1000 / 30);
     return () => {
-      window.clearInterval(timer);
+      window.clearInterval(timerId);
     };
-  }, [setStep, setCount]);
+  }, [setStep, setTimeLeft]);
 
   return (
     <>
@@ -42,20 +53,14 @@ export default function PageMainStep3() {
           Stand in front of the mic and breathe out naturally.
         </p>
       </div>
-      <AnimatePresence mode={'wait'}>
-        <motion.div
-          initial={{ opacity: 0, scale: 1.1 }}
-          animate={{ opacity: 1, scale: 1.0 }}
-          exit={{ opacity: 0, scale: 0.9 }}
-          transition={{ duration: 0.3 }}
-          key={count}
-          className={
-            'absolute left-1/2 mq-[margin-top|250px] mq-[width|307px] -translate-1/2 count'
-          }
-        >
-          {count}
-        </motion.div>
-      </AnimatePresence>
+
+      <div
+        className={
+          'absolute left-0 mq-[margin-top|250px] -translate-y-1/2 w-full timer text-center'
+        }
+      >
+        {timeLeft}
+      </div>
     </>
   );
 }

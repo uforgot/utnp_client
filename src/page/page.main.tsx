@@ -31,10 +31,10 @@ export default function PageMain() {
     <>
       <AnimatePresence mode={'wait'}>
         <motion.div
-          initial={{ opacity: 0, scale: 1.1 }}
-          animate={{ opacity: 1, scale: 1.0 }}
-          exit={{ opacity: 0, scale: 0.9 }}
-          transition={{ duration: 0.3 }}
+          initial={{ opacity: 0, filter: 'blur(20px)', scale: 0.95 }}
+          animate={{ opacity: 1, filter: 'blur(0px)', scale: 1.0 }}
+          exit={{ opacity: 0, filter: 'blur(20px)', scale: 1.05 }}
+          transition={{ duration: 0.8 }}
           key={step}
         >
           {scene}
