@@ -46,6 +46,7 @@ export default class InteractiveStage {
 
   private onStartHandler = () => {
     if (this.isInit) return;
+
     this.init();
   };
 
@@ -197,6 +198,7 @@ export default class InteractiveStage {
   public destroy(): void {
     this.isInit = false;
     this.audioDataForSend = [];
+
     console.log('Destroy');
     window.clearInterval(this.intervalId);
 
