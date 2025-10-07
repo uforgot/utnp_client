@@ -2,21 +2,60 @@ import * as THREE from 'three';
 import fragmentShader from '@/interactive/stage/interactive.stage.fragment_4.glsl?raw';
 import vertexShader from '@/interactive/stage/interactive.stage.vertex.glsl?raw';
 import { MeshBasicMaterial } from 'three';
+import Constant from '@/constant/constant.ts';
+
+export function deepClone<T>(obj: T): T {
+  if (obj === null || typeof obj !== 'object') return obj;
+
+  if (obj instanceof Date) return new Date(obj.getTime()) as any;
+  if (obj instanceof RegExp) return new RegExp(obj) as any;
+  if (Array.isArray(obj)) return obj.map(deepClone) as any;
+
+  const cloned: any = {};
+  for (const key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      cloned[key] = deepClone((obj as any)[key]);
+    }
+  }
+  return cloned;
+}
 
 export default class InteractiveStage {
+  static EVENT_START = 'interactive_start';
+  static EVENT_END = 'interactive_end';
+  static SEND_DATA = 'interactive_send_data';
+
+  private intervalId = 0;
+
+  private isInit = false;
   private time = 0;
   private audioCtx: AudioContext | undefined;
   private analyser: AnalyserNode | undefined;
   private audioData: Uint8Array<ArrayBuffer> | undefined;
+  private audioDataForSend: Array<any> = [];
 
   private scene: THREE.Scene | undefined;
   private camera: THREE.Camera | undefined;
   private renderer: THREE.WebGLRenderer | undefined;
   private uniforms: { [key: string]: { value: any } } | undefined;
 
-  constructor(private el: HTMLDivElement) {}
+  constructor(private el: HTMLDivElement) {
+    window.addEventListener(InteractiveStage.EVENT_START, this.onStartHandler);
+    window.addEventListener(InteractiveStage.EVENT_END, this.onEndHandler);
+  }
+
+  private onStartHandler = () => {
+    if (this.isInit) return;
+    this.init();
+  };
+
+  private onEndHandler = () => {
+    console.log(JSON.stringify(this.audioDataForSend));
+    this.destroy();
+  };
 
   public init(): void {
+    this.destroy();
     const audioCtx = new window.AudioContext();
     audioCtx.resume().then(() => {
       this.setMic();
@@ -121,8 +160,9 @@ export default class InteractiveStage {
       this.el.getBoundingClientRect().width,
       this.el.getBoundingClientRect().height
     );
-    this.renderer.setAnimationLoop(this.animate);
+    // this.renderer.setAnimationLoop(this.animate);
     this.el.appendChild(this.renderer.domElement);
+    this.intervalId = window.setInterval(this.animate, 1000 / Constant.FPS);
   }
 
   private animate = () => {
@@ -136,15 +176,30 @@ export default class InteractiveStage {
     this.analyser.getByteFrequencyData(this.audioData);
     this.uniforms.iTime.value = this.time += 0.01;
     this.uniforms.iResolution.value.set(
-      this.el.getBoundingClientRect().width * 1,
-      this.el.getBoundingClientRect().height * 1,
+      this.el.getBoundingClientRect().width,
+      this.el.getBoundingClientRect().height,
       1
     );
+
+    // const data = new THREE.DataTexture(
+    //   this.audioData,
+    //   this.analyser.fftSize / 2,
+    //   1,
+    //   THREE.RedFormat,
+    //   THREE.UnsignedByteType
+    // );
+
     this.uniforms.iChannel0.value.needsUpdate = true;
+    this.audioDataForSend.push(deepClone(this.uniforms.iChannel0.value));
     this.renderer.render(this.scene, this.camera);
   };
 
   public destroy(): void {
+    this.isInit = false;
+    this.audioDataForSend = [];
+    console.log('Destroy');
+    window.clearInterval(this.intervalId);
+
     if (this.renderer) {
       this.renderer.setAnimationLoop(null);
       this.el.removeChild(this.renderer.domElement);

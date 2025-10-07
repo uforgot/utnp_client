@@ -1,4 +1,18 @@
+import useStoreStep from '@/store/store.step.ts';
+import { useEffect } from 'react';
+
 export default function PageMainStep4() {
+  const { setStep } = useStoreStep();
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      setStep(0);
+    }, 3000);
+
+    return () => {
+      window.clearTimeout(timer);
+    };
+  }, [setStep]);
+
   return (
     <>
       <div className={'-translate-y-1/2'}>

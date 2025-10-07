@@ -1,11 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import useStoreStep from '@/store/store.step.ts';
+import InteractiveStage from '@/interactive/interactive.stage.ts';
+import Constant from '@/constant/constant.ts';
 
 export default function PageMainStep3() {
   const [timeLeft, setTimeLeft] = useState('');
   const { setStep } = useStoreStep();
+  const refIsStart = useRef(false);
 
   useEffect(() => {
+    if (refIsStart.current) return;
+    refIsStart.current = true;
+
     let timerId = 0;
     function formatTime(ms: number) {
       const second = Math.floor((ms / 1000) % 60);
@@ -22,15 +28,16 @@ export default function PageMainStep3() {
         if (timeLeft <= 0) {
           timeLeft = 0;
           window.clearInterval(timerId);
+          window.dispatchEvent(new Event(InteractiveStage.EVENT_END));
           setStep(3);
         }
         setTimeLeft(formatTime(timeLeft));
       }, timeout);
     }
-    intervalTimer(new Date(Date.now() + 10000), 1000 / 30);
-    return () => {
-      window.clearInterval(timerId);
-    };
+
+    window.dispatchEvent(new Event(InteractiveStage.EVENT_START));
+
+    intervalTimer(new Date(Date.now() + 3000), 1000 / Constant.FPS);
   }, [setStep, setTimeLeft]);
 
   return (

@@ -21,7 +21,6 @@ export default function PageMainStep2() {
     const timer = window.setInterval(() => {
       setCount((prev) => {
         if (prev === 0) {
-          setStep(2);
           return prev;
         }
         return prev - 1;
@@ -31,7 +30,13 @@ export default function PageMainStep2() {
     return () => {
       window.clearInterval(timer);
     };
-  }, [setStep, setCount]);
+  }, []);
+
+  useEffect(() => {
+    if (count === 0) {
+      setStep(2);
+    }
+  }, [count, setStep]);
 
   return (
     <>
