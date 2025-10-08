@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import useStoreStep from '@/store/store.step.ts';
-import InteractiveStage from '@/interactive/interactive.stage.ts';
 import Constant from '@/constant/constant.ts';
 import Address from '@/address.ts';
 
