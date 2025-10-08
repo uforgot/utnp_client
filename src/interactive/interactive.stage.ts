@@ -87,7 +87,7 @@ export default class InteractiveStage {
         }
       );
     } else {
-      alert('mic not supported');
+      // alert('mic not supported');
       navigator.mediaDevices
         .getUserMedia({ audio: true, video: false })
         .then((stream) => {

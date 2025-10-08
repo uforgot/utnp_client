@@ -6,7 +6,7 @@ export default function PageMainStep5() {
   useEffect(() => {
     const timer = window.setTimeout(() => {
       setStep(0);
-    }, 10000);
+    }, 5000);
 
     return () => {
       window.clearTimeout(timer);
