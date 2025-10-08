@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import useStoreStep from '@/store/store.step.ts';
 import InteractiveStage from '@/interactive/interactive.stage.ts';
 import Constant from '@/constant/constant.ts';
+import Address from '@/address.ts';
 
 export default function PageMainStep3() {
   const [timeLeft, setTimeLeft] = useState('');
@@ -28,14 +29,14 @@ export default function PageMainStep3() {
         if (timeLeft <= 0) {
           timeLeft = 0;
           window.clearInterval(timerId);
-          window.dispatchEvent(new Event(InteractiveStage.EVENT_END));
+          Address.getInstance().interactiveStage?.setSave();
           setStep(3);
         }
         setTimeLeft(formatTime(timeLeft));
       }, timeout);
     }
 
-    window.dispatchEvent(new Event(InteractiveStage.EVENT_START));
+    Address.getInstance().interactiveStage?.setStart();
 
     intervalTimer(new Date(Date.now() + 3000), 1000 / Constant.FPS);
   }, [setStep, setTimeLeft]);

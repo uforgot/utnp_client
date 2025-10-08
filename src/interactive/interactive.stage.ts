@@ -3,6 +3,7 @@ import fragmentShader from '@/interactive/stage/interactive.stage.fragment_4.gls
 import vertexShader from '@/interactive/stage/interactive.stage.vertex.glsl?raw';
 import { MeshBasicMaterial } from 'three';
 import Constant from '@/constant/constant.ts';
+import Address from '@/address.ts';
 
 export function deepClone<T>(obj: T): T {
   if (obj === null || typeof obj !== 'object') return obj;
@@ -40,17 +41,15 @@ export default class InteractiveStage {
   private uniforms: { [key: string]: { value: any } } | undefined;
 
   constructor(private el: HTMLDivElement) {
-    window.addEventListener(InteractiveStage.EVENT_START, this.onStartHandler);
-    window.addEventListener(InteractiveStage.EVENT_END, this.onEndHandler);
+    Address.getInstance().setInteractiveStage(this);
   }
 
-  private onStartHandler = () => {
+  public setStart = () => {
     if (this.isInit) return;
-
     this.init();
   };
 
-  private onEndHandler = () => {
+  public setSave = () => {
     console.log(JSON.stringify(this.audioDataForSend));
     this.destroy();
   };
