@@ -39,7 +39,9 @@
     "vite-plugin-glsl": "^1.5.3",
     "vite-plugin-package-version": "^1.1.0",
     "vite-tsconfig-paths": "^5.1.4",
-    "zustand": "^5.0.8"
+    "zustand": "^5.0.8",
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1"
   },
   "overrides": {
     "vite": "npm:rolldown-vite@7.1.14"

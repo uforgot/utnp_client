@@ -22,10 +22,6 @@ export function deepClone<T>(obj: T): T {
 }
 
 export default class InteractiveStage {
-  static EVENT_START = 'interactive_start';
-  static EVENT_END = 'interactive_end';
-  static SEND_DATA = 'interactive_send_data';
-
   private intervalId = 0;
 
   private isInit = false;
@@ -50,8 +46,7 @@ export default class InteractiveStage {
   };
 
   public setSave = () => {
-    console.log(JSON.stringify(this.audioDataForSend));
-    this.destroy();
+    return JSON.stringify(this.audioDataForSend);
   };
 
   public init(): void {
@@ -190,7 +185,8 @@ export default class InteractiveStage {
     // );
 
     this.uniforms.iChannel0.value.needsUpdate = true;
-    this.audioDataForSend.push(deepClone(this.uniforms.iChannel0.value));
+    console.log(this.audioData);
+    this.audioDataForSend.push(deepClone(this.audioData));
     this.renderer.render(this.scene, this.camera);
   };
 

@@ -28,7 +28,7 @@ export default function PageMainStep3() {
         if (timeLeft <= 0) {
           timeLeft = 0;
           window.clearInterval(timerId);
-          Address.getInstance().interactiveStage?.setSave();
+          Address.getInstance().setSave();
           setStep(3);
         }
         setTimeLeft(formatTime(timeLeft));
@@ -37,7 +37,7 @@ export default function PageMainStep3() {
 
     Address.getInstance().interactiveStage?.setStart();
 
-    intervalTimer(new Date(Date.now() + 3000), 1000 / Constant.FPS);
+    intervalTimer(new Date(Date.now() + 10000), 1000 / Constant.FPS);
   }, [setStep, setTimeLeft]);
 
   return (
