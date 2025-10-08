@@ -5,7 +5,7 @@ export default function PageMainStep4() {
   const { setStep } = useStoreStep();
   useEffect(() => {
     const timer = window.setTimeout(() => {
-      setStep(0);
+      setStep(4);
     }, 3000);
 
     return () => {

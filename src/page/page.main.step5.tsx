@@ -1,4 +1,18 @@
+import useStoreStep from '@/store/store.step.ts';
+import { useEffect } from 'react';
+
 export default function PageMainStep5() {
+  const { setStep } = useStoreStep();
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      setStep(0);
+    }, 10000);
+
+    return () => {
+      window.clearTimeout(timer);
+    };
+  }, [setStep]);
+
   return (
     <>
       <div className={'mq-[margin-top|-200px]'}>
