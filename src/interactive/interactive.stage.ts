@@ -185,8 +185,11 @@ export default class InteractiveStage {
     // );
 
     this.uniforms.iChannel0.value.needsUpdate = true;
-    console.log(this.audioData);
-    this.audioDataForSend.push(deepClone(this.audioData));
+    const item = deepClone(this.audioData);
+    const tmpItem: Array<number> = Array.isArray(item)
+      ? item
+      : Object.values(item);
+    this.audioDataForSend.push(tmpItem);
     this.renderer.render(this.scene, this.camera);
   };
 

@@ -1,3 +1,3 @@
 export default class Constant {
-  static FPS = 60;
+  static FPS = 30;
 }
