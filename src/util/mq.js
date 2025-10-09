@@ -62,9 +62,9 @@ var Mq = class _Mq {
   }
   get value() {
     const obj = {};
-    obj[this.property] = this.getValue(this._valueArray[0], 0, true);
+    // obj[this.property] = this.getValue(this._valueArray[0], 0, true);
     // vw 반영 하지 않도록 수정
-    // obj[this.property] = parseFloat(this._valueArray[1]) / 2 + 'px';
+    obj[this.property] = parseFloat(this._valueArray[1]) / 2 + 'px';
 
     // mobile 사이즈 하나만 있으므로 media 쿼리 생성 안함
     for (let i = 0; i < _Mq.breakPoint.length - 1; i++) {

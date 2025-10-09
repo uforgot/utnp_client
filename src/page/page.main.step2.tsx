@@ -33,7 +33,7 @@ export default function PageMainStep2() {
   }, []);
 
   useEffect(() => {
-    if (count === -1) {
+    if (count === 0) {
       setStep(2);
     }
   }, [count, setStep]);
@@ -76,7 +76,7 @@ export default function PageMainStep2() {
             'absolute left-1/2 mq-[margin-top|250px] mq-[width|307px] -translate-1/2 count'
           }
         >
-          {count < 0 ? '0' : count}
+          {count < 1 ? '1' : count}
         </motion.div>
       </AnimatePresence>
     </>
