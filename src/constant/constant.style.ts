@@ -55,6 +55,7 @@ class ConstantStyle {
       },
       zIndex: {
         background: '10',
+        end: '20',
         content: '1000',
         frame: '1500',
         din: '600000',
