@@ -29,7 +29,7 @@ export default class CoreBackground extends React.Component<IProps> {
           <img
             src={'/bg.jpg'}
             alt={'background'}
-            className={'w-full h-full object-cover'}
+            className={'w-full h-full bg-repeat-x'}
           />
         </div>
         <div
