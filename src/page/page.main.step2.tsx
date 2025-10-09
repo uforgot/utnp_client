@@ -34,9 +34,7 @@ export default function PageMainStep2() {
 
   useEffect(() => {
     if (count === 0) {
-      window.setTimeout(() => {
-        setStep(2);
-      }, 500);
+      setStep(2);
     }
   }, [count, setStep]);
 
