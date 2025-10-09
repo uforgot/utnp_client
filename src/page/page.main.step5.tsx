@@ -38,7 +38,7 @@ export default function PageMainStep5() {
               'text-black text-center whitespace-nowrap mq-[margin-top|24px]'
             }
           >
-            Your breath is now a rhythm of light.
+            Your breath has become a rhythm of light.
             <br />
             Capture the moment.
           </p>

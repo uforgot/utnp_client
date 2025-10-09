@@ -29,9 +29,8 @@ export default function PageMainStep3() {
           timeLeft = 0;
           window.clearInterval(timerId);
           Address.getInstance().setSave();
-          // window.setTimeout(() => {
+
           setStep(3);
-          // }, 500);
         }
         setTimeLeft(formatTime(timeLeft));
       }, timeout);
@@ -50,22 +49,22 @@ export default function PageMainStep3() {
             'text-lime text-center whitespace-nowrap mq-[margin-top|56px]'
           }
         >
-          마이크 앞에 서서
+          지금부터 10초 동안
           <br />
-          자연스럽게 숨을 내쉬어주세요.
+          자연스럽게 숨을 내쉬세요.
         </h1>
         <p
           className={
             'text-lime text-center whitespace-nowrap mq-[margin-top|24px]'
           }
         >
-          Stand in front of the mic and breathe out naturally.
+          Breathe out naturally for 10 seconds.
         </p>
       </div>
 
       <div
         className={
-          'absolute left-0 mq-[margin-top|250px] -translate-y-1/2 w-full timer text-center'
+          'absolute left-1/2 mq-[margin-top|250px] -translate-1/2 timer'
         }
       >
         {timeLeft}

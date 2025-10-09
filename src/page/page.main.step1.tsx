@@ -22,9 +22,9 @@ export default function PageMainStep1() {
           'text-lime text-center whitespace-nowrap mq-[margin-top|20px]'
         }
       >
-        Your breath is visualized as rhythm of light.
+        Your breath becomes a rhythm of light.
         <br />
-        Take a deep breath, shall we begin?
+        Take a deep breath and let's begin.
       </p>
       <div className={'mq-[margin-top|100px] flex justify-center'}>
         <motion.button

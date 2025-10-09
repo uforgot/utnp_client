@@ -46,16 +46,16 @@ export default function PageMainStep2() {
             'text-lime text-center whitespace-nowrap mq-[margin-top|56px]'
           }
         >
-          곧 카운트가 시작됩니다.
+          이제 곧 시작됩니다.
           <br />
-          10초간 자연스럽게 숨을 내쉬세요.
+          숨을 내쉴 준비를 하세요.
         </h1>
         <p
           className={
             'text-lime text-center whitespace-nowrap mq-[margin-top|24px]'
           }
         >
-          The countdown will begin. Exhale naturally for 5 seconds.
+          It will start soon. Get ready to breathe out.
         </p>
       </div>
       {/*<div*/}
