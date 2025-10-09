@@ -30,7 +30,7 @@ export default function PageMainStep4() {
         </p>
         <div
           className={
-            'absolute left-1/2 top-1/2 -translate-1/2 mq-[width|850px] rotate-animation'
+            'absolute left-1/2 top-1/2 -translate-1/2 mq-[width|850px] rotate-animation aspect-square'
           }
         >
           <img src={'/loading.svg'} alt={'loading'} />
