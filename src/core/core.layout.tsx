@@ -14,11 +14,18 @@ export default function CoreLayout({
     <main className={'absolute left-0 top-0 w-full h-full overflow-hidden'}>
       <CoreBackground />
       <div
-        className={'absolute left-0 top-0 w-full h-full z-end'}
-        style={{ opacity: step === 4 ? 1 : 0, transition: 'opacity 1s' }}
+        className={'absolute left-0 top-1/2 w-full aspect-square z-end'}
+        style={{
+          opacity: step < 4 ? 0 : 1,
+          transition: 'opacity 1s ease-in, transform 1s 0.1s ease-in',
+          transform:
+            step < 4
+              ? 'translateY(-50%) scale(0.5)'
+              : 'translateY(-50%) scale(1.0)',
+        }}
       >
         <img
-          src={'/background-end.jpg'}
+          src={'/background-end.webp'}
           alt={'background'}
           className={'w-full h-full'}
         />

@@ -51,14 +51,14 @@ export default function PageMainStep3() {
         >
           지금부터 10초 동안
           <br />
-          자연스럽게 숨을 내쉬세요.
+          자연스럽게 호흡하세요.
         </h1>
         <p
           className={
             'text-lime text-center whitespace-nowrap mq-[margin-top|24px]'
           }
         >
-          Breathe out naturally for 10 seconds.
+          Breathe naturally for 10 seconds.
         </p>
       </div>
 

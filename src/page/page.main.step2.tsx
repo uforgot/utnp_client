@@ -48,14 +48,14 @@ export default function PageMainStep2() {
         >
           이제 곧 시작됩니다.
           <br />
-          숨을 내쉴 준비를 하세요.
+          편하게 숨쉴 준비를 하세요.
         </h1>
         <p
           className={
             'text-lime text-center whitespace-nowrap mq-[margin-top|24px]'
           }
         >
-          It will start soon. Get ready to breathe out.
+          Starting soon. Relax and get ready to breathe.
         </p>
       </div>
       {/*<div*/}
