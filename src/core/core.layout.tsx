@@ -14,14 +14,16 @@ export default function CoreLayout({
     <main className={'absolute left-0 top-0 w-full h-full overflow-hidden'}>
       <CoreBackground />
       <div
-        className={'absolute left-0 top-1/2 w-full aspect-square z-end'}
+        className={'absolute left-1/2 top-1/2 aspect-square z-end'}
         style={{
+          width: window.innerWidth > window.innerHeight ? '100%' : 'unset',
+          height: window.innerWidth > window.innerHeight ? 'unset' : '100%',
           opacity: step < 4 ? 0 : 1,
           transition: 'opacity 1s ease-in, transform 1s 0.1s ease-in',
           transform:
             step < 4
-              ? 'translateY(-50%) scale(0.5)'
-              : 'translateY(-50%) scale(1.0)',
+              ? 'translate(-50%, -50%) scale(0.5)'
+              : 'translate(-50%, -50%) scale(1.0)',
         }}
       >
         <img

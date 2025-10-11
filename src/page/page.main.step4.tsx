@@ -1,10 +1,12 @@
 import useStoreStep from '@/store/store.step.ts';
 import { useEffect } from 'react';
+import Address from '@/address.ts';
 
 export default function PageMainStep4() {
   const { setStep } = useStoreStep();
   useEffect(() => {
     const timer = window.setTimeout(() => {
+      Address.getInstance().setSend();
       setStep(4);
     }, 3000);
 

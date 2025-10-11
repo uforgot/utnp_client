@@ -29,7 +29,6 @@ export default function PageMainStep3() {
           timeLeft = 0;
           window.clearInterval(timerId);
           Address.getInstance().setSave();
-
           setStep(3);
         }
         setTimeLeft(formatTime(timeLeft));

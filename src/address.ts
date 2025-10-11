@@ -35,7 +35,10 @@ class Address {
 
   public setSave() {
     this.data = this.interactiveStage?.setSave();
+    this.interactiveStage?.destroy();
+  }
 
+  public setSend() {
     const ably = new Ably.Realtime(
       'LWMPBA.iyAokg:uUWmR8k2r-li4oPBlT-rz83ju_qSEMMLkd1w2Jxqmig'
     );
@@ -45,8 +48,6 @@ class Address {
       await channel.publish('send', this.data);
       ably.connection.close();
     });
-
-    this.interactiveStage?.destroy();
   }
 
   public setInteractiveStage(interactiveStage: InteractiveStage) {
