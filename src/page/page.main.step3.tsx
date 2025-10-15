@@ -36,11 +36,11 @@ export default function PageMainStep3() {
       }, timeout);
     }
 
-    const timeOut = window.setTimeout(() => {
-      console.log('Start Interactive Stage');
-      Address.getInstance().interactiveStage?.setStart();
-      intervalTimer(new Date(Date.now() + 10000), 1000 / Constant.FPS);
-    }, 600);
+    // const timeOut = window.setTimeout(() => {
+    //   console.log('Start Interactive Stage');
+    Address.getInstance().interactiveStage?.setStart();
+    intervalTimer(new Date(Date.now() + 10000), 1000 / Constant.FPS);
+    // }, 600);
 
     return () => {
       // window.clearTimeout(timeOut);
