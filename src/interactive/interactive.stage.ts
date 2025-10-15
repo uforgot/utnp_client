@@ -51,11 +51,11 @@ export default class InteractiveStage {
 
   public init(): void {
     this.destroy();
-    const audioCtx = new window.AudioContext();
-    audioCtx.resume().then(() => {
-      this.setMic();
-      console.log('Playback resumed successfully');
-    });
+    // const audioCtx = new window.AudioContext();
+    // audioCtx.resume().then(() => {
+    this.setMic();
+    console.log('Playback resumed successfully');
+    // });
   }
 
   private setMic(): void {
