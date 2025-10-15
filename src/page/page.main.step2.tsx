@@ -14,16 +14,19 @@ export default function PageMainStep2() {
   //   };
   // }, [setStep]);
 
-  const [count, setCount] = useState(3);
+  const [count, setCount] = useState('');
   const { setStep } = useStoreStep();
 
   useEffect(() => {
     const timer = window.setInterval(() => {
       setCount((prev) => {
-        if (prev === 0) {
+        if (prev === '0') {
           return prev;
         }
-        return prev - 1;
+        if (prev === '') {
+          return '3';
+        }
+        return `${parseInt(prev) - 1}`;
       });
     }, 1000);
 
@@ -33,7 +36,7 @@ export default function PageMainStep2() {
   }, []);
 
   useEffect(() => {
-    if (count === 0) {
+    if (parseInt(count) === 0) {
       setStep(2);
     }
   }, [count, setStep]);
@@ -46,17 +49,31 @@ export default function PageMainStep2() {
             'text-lime text-center whitespace-nowrap mq-[margin-top|56px]'
           }
         >
-          이제 곧 시작됩니다.
-          <br />
-          편하게 숨쉴 준비를 하세요.
+          <motion.div
+            initial={{ opacity: 0, y: '20px' }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            이제 곧 시작됩니다.
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: '20px' }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            편하게 숨쉴 준비를 하세요.
+          </motion.div>
         </h1>
-        <p
+        <motion.p
+          initial={{ opacity: 0, y: '20px' }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
           className={
             'text-lime text-center whitespace-nowrap mq-[margin-top|24px]'
           }
         >
           Starting soon. Relax and get ready to breathe.
-        </p>
+        </motion.p>
       </div>
       {/*<div*/}
       {/*  className={*/}
@@ -76,7 +93,7 @@ export default function PageMainStep2() {
             'absolute left-1/2 mq-[margin-top|250px] mq-[width|307px] -translate-1/2 count'
           }
         >
-          {count < 1 ? '1' : count}
+          {parseInt(count) < 1 ? '1' : count}
         </motion.div>
       </AnimatePresence>
     </>

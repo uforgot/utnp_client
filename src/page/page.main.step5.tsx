@@ -17,12 +17,11 @@ export default function PageMainStep5() {
   return (
     <>
       <div className={'mq-[margin-top|-200px]'}>
-        <motion.div
-          initial={{ opacity: 0, scale: 1.2 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.4 }}
-        >
-          <h1
+        <div>
+          <motion.h1
+            initial={{ opacity: 0, scale: 1.2, filter: 'blur(20px)' }}
+            animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+            transition={{ duration: 0.8, delay: 0.4 }}
             className={
               'text-black text-center whitespace-nowrap mq-[margin-top|56px]'
             }
@@ -32,8 +31,11 @@ export default function PageMainStep5() {
             빛의 리듬이 되었습니다.
             <br />
             사진을 남겨보세요.
-          </h1>
-          <p
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, scale: 1.2, filter: 'blur(20px)' }}
+            animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+            transition={{ duration: 0.8, delay: 0.8 }}
             className={
               'text-black text-center whitespace-nowrap mq-[margin-top|24px]'
             }
@@ -41,8 +43,8 @@ export default function PageMainStep5() {
             Your breath has become a rhythm of light.
             <br />
             Capture the moment.
-          </p>
-        </motion.div>
+          </motion.p>
+        </div>
       </div>
     </>
   );
